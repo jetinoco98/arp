@@ -17,12 +17,12 @@ int main()
         fgets(input_string, 80, stdin);
 
         // removing trailing newline
-        send_string[strcspn(send_string, "\r\n")] = 0;
+        //send_string[strcspn(send_string, "\r\n")] = 0;
         // formatting the input
         strcat(send_string, "|");
         strcat(send_string, input_string);
         // removing trailing newline
-        send_string[strcspn(send_string, "\r\n")] = 0;
+        //send_string[strcspn(send_string, "\r\n")] = 0;
     }
 
     printf("%s",send_string);
