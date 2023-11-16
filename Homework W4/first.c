@@ -6,8 +6,6 @@
 #include <unistd.h> 
 #include <stdlib.h>
 
-// Testing git
-  
 int main() 
 { 
     int fd; 

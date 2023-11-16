@@ -14,9 +14,9 @@ void spawn(char** programArgs){
 int main(int argc, char *argv[]) {
     char* argsFirst[] = {"konsole", "-e", "./first", NULL};
     char* argsSecond1[] = {"konsole", "-e", "./second", NULL};
-    char* argsSecond2[] = {};
+    char* argsSecond2[] = {"konsole", "-e", "./second2", NULL};
 
-    for (int i = 0; i < 2; i++) {
+    for (int i = 0; i < 3; i++) {
         // Spawning processes as childs of the caller
         pid_t pid = fork();
 
@@ -25,10 +25,16 @@ int main(int argc, char *argv[]) {
         }else if(!pid){
             if(i == 0){
                 spawn(argsFirst);
-            }else if(i == 1){
+            }
+            else if(i == 1){
                 spawn(argsSecond1);
             }
-        }else{
+            else if(i == 2){
+                spawn(argsSecond2);
+            }
+        }
+        
+        else{
             // Continuing with father
             printf("Spawned child with pid: %d\n", pid);
         }
