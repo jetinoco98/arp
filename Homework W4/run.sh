@@ -2,8 +2,8 @@
 
 # Compile the C file
 gcc -o father father.c 
-gcc -o first first.c 
-gcc -o second second.c
+gcc -o reader reader.c 
+gcc -o writer writer.c
 
 # Run the compiled program
 ./father
