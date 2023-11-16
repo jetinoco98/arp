@@ -13,7 +13,8 @@ void spawn(char** programArgs){
 
 int main(int argc, char *argv[]) {
     char* argsFirst[] = {"konsole", "-e", "./first", NULL};
-    char* argsSecond[] = {"konsole", "-e", "./second", NULL};
+    char* argsSecond1[] = {"konsole", "-e", "./second", NULL};
+    char* argsSecond2[] = {};
 
     for (int i = 0; i < 2; i++) {
         // Spawning processes as childs of the caller
@@ -25,7 +26,7 @@ int main(int argc, char *argv[]) {
             if(i == 0){
                 spawn(argsFirst);
             }else if(i == 1){
-                spawn(argsSecond);
+                spawn(argsSecond1);
             }
         }else{
             // Continuing with father

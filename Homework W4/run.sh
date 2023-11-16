@@ -1,7 +1,9 @@
 #!/bin/bash
 
 # Compile the C file
-father.c gcc -o father
+gcc -o father father.c 
+gcc -o first first.c 
+gcc -o second second.c 
 
 # Run the compiled program
 ./father
