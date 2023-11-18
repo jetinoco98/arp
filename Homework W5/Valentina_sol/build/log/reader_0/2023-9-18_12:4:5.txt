@@ -1,0 +1,3 @@
+Logged 162 in cell 0 
+Logged 177 in cell 0 
+Logged 60 in cell 0 
