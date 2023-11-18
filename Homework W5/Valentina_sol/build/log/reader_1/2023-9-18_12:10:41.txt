@@ -1,3 +1,0 @@
-Logged 88 in cell 1 
-Logged 88 in cell 1 
-Logged 135 in cell 1 
