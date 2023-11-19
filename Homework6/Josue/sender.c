@@ -24,31 +24,32 @@ int main(int argc, char *argv[]) {
     // VARIABLES DECLARATIONS
     char send_char;
 
-
     // Information about child process number
     int id = argv[1][0] - '0';
-    printf(LOG_INFO "Im am child number %d\n\n", id);
-    fflush(stdout);
+    printf(LOG_INFO "I am child number %d\n\n", id);
 
-    int i = 100;
-    while(i<100){
-        if (id == 1){
+    int i = 0;
+    while(i < 100) {
+        printf("%d\n", id);
+        if (id == 1) {
+            printf("Inside id 1\n");
             send_char = 'A';
             fd1 = open(myfifo1, O_WRONLY);
-            write(fd1, send_char, strlen(send_char) + 1);
+            write(fd1, &send_char, sizeof(send_char) + 1);
             close(fd1);
-            printf("Sending character %c to reader.",send_char);
+            printf("Sending character %c to reader.\n", send_char);
             sleep(0.1);
         }
-        else{
+        else {
+            printf("Inside id 2\n");
             send_char = 'B';
             fd2 = open(myfifo2, O_WRONLY);
-            write(fd2, send_char, strlen(send_char) + 1);
+            write(fd2, &send_char, sizeof(send_char) + 1);
             close(fd2);
             sleep(0.9);
-            printf("Sending character %c to reader.",send_char);
+            printf("Sending character %c to reader.\n", send_char);
         }
-        i = i+1;
+        i = i + 1;
     }
 
     return 0;
