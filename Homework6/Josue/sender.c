@@ -12,23 +12,44 @@
 
 int main(int argc, char *argv[]) {
 
-    /*
+    // FIFO for Children 1
     int fd1;
     char *myfifo1 = "./myfifo1";
     mkfifo(myfifo1, 0666);
+    // FIFO for Children 2
+    int fd2;
+    char *myfifo2 = "./myfifo2";
+    mkfifo(myfifo2, 0666);
 
-    //char str1[80], str2[80];
-    char format_string[80] = "%d,%d";
-    int r1, r2;
-    double f1, f2;
-    */
-   
+    // VARIABLES DECLARATIONS
+    char send_char;
+
+
     // Information about child process number
     int id = argv[1][0] - '0';
     printf(LOG_INFO "Im am child number %d\n\n", id);
     fflush(stdout);
 
-    sleep(5);
+    int i = 100;
+    while(i<100){
+        if (id == 1){
+            send_char = 'A';
+            fd1 = open(myfifo1, O_WRONLY);
+            write(fd1, send_char, strlen(send_char) + 1);
+            close(fd1);
+            printf("Sending character %c to reader.",send_char);
+            sleep(0.1);
+        }
+        else{
+            send_char = 'B';
+            fd2 = open(myfifo2, O_WRONLY);
+            write(fd2, send_char, strlen(send_char) + 1);
+            close(fd2);
+            sleep(0.9);
+            printf("Sending character %c to reader.",send_char);
+        }
+        i = i+1;
+    }
 
     return 0;
 }

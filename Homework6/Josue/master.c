@@ -13,7 +13,7 @@ void summon(char** programArgs){
 int main(int argc, char *argv[]) {
     int childExitStatus;
     char* argsReader[] = {"konsole", "-e", "./reader", NULL};
-    char* argsWriter[] = {"konsole", "-e", "./writer", "0", NULL};
+    char* argsWriter[] = {"konsole", "-e", "./sender", "0", NULL};
 
     for (int i = 0; i < 3; i++) {
         // Summoning processes as childs of the caller
