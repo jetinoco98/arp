@@ -2,7 +2,7 @@
 
 # Compile the programs
 gcc father.c -o father
-gcc child.c -o child
+gcc writer.c -o writer
 
 # Run the father program
 ./father
