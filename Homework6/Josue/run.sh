@@ -2,7 +2,7 @@
 
 # Compile the programs
 gcc master.c -o master
-gcc writer.c -o writer
+gcc sender.c -o sender
 gcc reader.c -o reader
 
 # Run the father program
