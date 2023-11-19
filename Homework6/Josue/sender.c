@@ -22,7 +22,7 @@ int main(int argc, char *argv[]) {
     mkfifo(myfifo2, 0666);
 
     // VARIABLES DECLARATIONS
-    char send_char;
+    char send_char[80];
 
     // Information about child process number
     int id = argv[1][0] - '0';
@@ -33,21 +33,21 @@ int main(int argc, char *argv[]) {
         printf("%d\n", id);
         if (id == 1) {
             printf("Inside id 1\n");
-            send_char = 'A';
+            send_char[0] = 'A';
             fd1 = open(myfifo1, O_WRONLY);
-            write(fd1, &send_char, sizeof(send_char) + 1);
+            write(fd1, &send_char, strlen(send_char)+1);
             close(fd1);
-            printf("Sending character %c to reader.\n", send_char);
+            printf("Sending character A to reader.\n");
             sleep(0.1);
         }
         else {
             printf("Inside id 2\n");
-            send_char = 'B';
+            send_char[0] = 'B';
             fd2 = open(myfifo2, O_WRONLY);
-            write(fd2, &send_char, sizeof(send_char) + 1);
+            write(fd2, &send_char, strlen(send_char)+1);
             close(fd2);
             sleep(0.9);
-            printf("Sending character %c to reader.\n", send_char);
+            printf("Sending character B to reader.\n");
         }
         i = i + 1;
     }
