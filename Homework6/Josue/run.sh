@@ -9,3 +9,5 @@ gcc reader.c -o reader
 ./master
 
 echo "Programs executed"
+
+rm -f master reader sender
