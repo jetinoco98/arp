@@ -25,7 +25,7 @@ int main()
 	fflush(stdout);
         /* read a full input line */
         fgets(input_string, 80 , stdin); 
-	sleep(4);
+	//sleep(4);
         write(fd, input_string, strlen(input_string)+1); 
         close(fd); 
         /* if the first input char is q, exit  */
