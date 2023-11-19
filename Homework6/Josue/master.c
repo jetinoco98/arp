@@ -42,7 +42,7 @@ int main(int argc, char *argv[]) {
         }
     }
 
-    for (int i = 0; i < 2; i++) {
+    for (int i = 0; i < 3; i++) {
         //waits for childrens to end
         int finishedPid =  wait(&childExitStatus);
         //if the childs have exited normally print their pid and status

@@ -12,6 +12,7 @@
 
 int main(int argc, char *argv[]) {
 
+    /*
     int fd1;
     char *myfifo1 = "./myfifo1";
     mkfifo(myfifo1, 0666);
@@ -20,7 +21,8 @@ int main(int argc, char *argv[]) {
     char format_string[80] = "%d,%d";
     int r1, r2;
     double f1, f2;
-
+    */
+   
     // Information about child process number
     int id = argv[1][0] - '0';
     printf(LOG_INFO "Im am child number %d\n\n", id);
