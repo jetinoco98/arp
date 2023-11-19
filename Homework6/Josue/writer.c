@@ -24,5 +24,7 @@ int main(int argc, char *argv[]) {
     printf(LOG_INFO "Im am child number %d\n\n", id);
     fflush(stdout);
 
+    sleep(10);
+
     return 0;
 }

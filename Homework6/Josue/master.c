@@ -13,7 +13,7 @@ void summon(char** programArgs){
 int main(int argc, char *argv[]) {
     int childExitStatus;
     char* argsReader[] = {"konsole", "-e", "./reader", NULL};
-    char* argsWriter[] = {"konsole", "-e", "./reader", "0", NULL};
+    char* argsWriter[] = {"konsole", "-e", "./writer", "0", NULL};
 
     for (int i = 0; i < 3; i++) {
         // Summoning processes as childs of the caller
@@ -23,14 +23,14 @@ int main(int argc, char *argv[]) {
             exit(EXIT_FAILURE);
         }
         else if(!pid){
-            if (i ==0){
-                //summong(argsReader)
-                continue;
+            if (i == 0){
+                summon(argsReader);
             }
-            else if(i == 0){
+            else if(i == 1){
                 argsWriter[3] = "1";
                 summon(argsWriter);
-            }else if (i == 1) {
+            }
+            else if (i == 2) {
                 argsWriter[3] = "2";
                 summon(argsWriter);
             }
