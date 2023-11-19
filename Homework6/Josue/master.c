@@ -51,8 +51,7 @@ int main(int argc, char *argv[]) {
         }
     }
 
-    printf("Childs exited and FIFO closed, father closing\n");
-    fflush(stdout);
+    printf("Childs exited and FIFO closed. Father closing\n");
 
     return EXIT_SUCCESS;
 }

@@ -14,11 +14,11 @@ int main(int argc, char *argv[]) {
 
     // FIFO for Children 1
     int fd1;
-    char *myfifo1 = "./myfifo1";
+    char * myfifo1 = "/tmp/myfifo1";
     mkfifo(myfifo1, 0666);
     // FIFO for Children 2
     int fd2;
-    char *myfifo2 = "./myfifo2";
+    char * myfifo2 = "/tmp/myfifo2";
     mkfifo(myfifo2, 0666);
 
     // VARIABLES DECLARATIONS
@@ -28,28 +28,23 @@ int main(int argc, char *argv[]) {
     int id = argv[1][0] - '0';
     printf(LOG_INFO "I am child number %d\n\n", id);
 
-    int i = 0;
-    while(i < 100) {
-        printf("%d\n", id);
+    while(1) {
+        sleep(1);
         if (id == 1) {
-            printf("Inside id 1\n");
             send_char[0] = 'A';
             fd1 = open(myfifo1, O_WRONLY);
-            write(fd1, &send_char, strlen(send_char)+1);
+            write(fd1, send_char, strlen(send_char)+1);
             close(fd1);
-            printf("Sending character A to reader.\n");
-            sleep(0.1);
+            usleep(100000);
         }
-        else {
-            printf("Inside id 2\n");
+        
+        else if (id == 2) {
             send_char[0] = 'B';
             fd2 = open(myfifo2, O_WRONLY);
-            write(fd2, &send_char, strlen(send_char)+1);
+            write(fd2, send_char, strlen(send_char)+1);
             close(fd2);
-            sleep(0.9);
-            printf("Sending character B to reader.\n");
+            usleep(500000);
         }
-        i = i + 1;
     }
 
     return 0;
