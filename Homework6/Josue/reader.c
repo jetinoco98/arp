@@ -34,6 +34,10 @@ int main(int argc, char *argv[]) {
         FD_SET(fd2, &rfds);
 
         // Use select to check for data on either fd1 or fd2
+
+        // Select needs as first argument the file descriptor whith the highest value, and +1
+        // 
+        
         if (select(fd2 + 1, &rfds, NULL, NULL, NULL) == -1) {
             perror("Error in select");
             exit(EXIT_FAILURE);
