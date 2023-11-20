@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Compile the programs
-gcc master.c -o master
+gcc main.c -o main
 gcc sender.c -o sender
 gcc reader.c -o reader
 
