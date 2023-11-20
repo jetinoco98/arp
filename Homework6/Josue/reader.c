@@ -55,13 +55,14 @@ int main(int argc, char *argv[]) {
         if (FD_ISSET(fd1, &rfds)) {
             bytesRead = read(fd1, buffer, MAX_BUF);
             if (bytesRead > 0) {
+                // This line null-terminates the portion of the buffer that contains the data read from fd1.
                 buffer[bytesRead] = '\0';
                 fprintf(logFile, "%s", buffer);
                 fflush(logFile);
             }
         }
 
-        // Check fd2
+        // CHECK FD2
         if (FD_ISSET(fd2, &rfds)) {
             bytesRead = read(fd2, buffer, MAX_BUF);
             if (bytesRead > 0) {
