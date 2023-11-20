@@ -10,6 +10,9 @@
 #define LOG_INFO "\x1b[32m[INFO] \x1b[0m"
 #define LOG_ERROR "\x1b[31m[INFO] \x1b[0m"
 
+#define SLEEP_A 100000
+#define SLEEP_B 500000
+
 int main(int argc, char *argv[]) {
 
     // FIFO for Children 1
@@ -33,17 +36,31 @@ int main(int argc, char *argv[]) {
         if (id == 1) {
             send_char[0] = 'A';
             fd1 = open(myfifo1, O_WRONLY);
-            write(fd1, send_char, strlen(send_char)+1);
+            // Error checking on fd1
+            if (fd1 == -1) {
+                perror(LOG_ERROR "Error opening FIFO for writing");
+                exit(EXIT_FAILURE);
+            }
+            // Write function execution and error checking in same line
+            if (write(fd1, send_char, strlen(send_char) + 1) == -1) {
+                perror(LOG_ERROR "Error writing to FIFO");
+            }
             close(fd1);
-            usleep(100000);
+            usleep(SLEEP_A);
         }
         
         else if (id == 2) {
             send_char[0] = 'B';
             fd2 = open(myfifo2, O_WRONLY);
-            write(fd2, send_char, strlen(send_char)+1);
+            if (fd2 == -1){
+                perror(LOG_ERROR "Error opening FIFO for writing");
+                exit(EXIT_FAILURE);
+            }
+            if (write(fd2, send_char, strlen(send_char)+1) == -1){
+                perror(LOG_ERROR "Error writing to FIFO");
+            };
             close(fd2);
-            usleep(500000);
+            usleep(SLEEP_B);
         }
     }
 

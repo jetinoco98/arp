@@ -28,16 +28,20 @@ int main(int argc, char *argv[]) {
     }
 
     while (1) {
+        // Declares a file descriptor set named rfds. 
+        // This set is used to specify the file descriptors that select should monitor.
         fd_set rfds;
+        // Initializes the file descriptor set rfds by clearing all file descriptors from it.
         FD_ZERO(&rfds);
+        // Adds fd1 and fd2 to the file descriptor set rfds.
         FD_SET(fd1, &rfds);
         FD_SET(fd2, &rfds);
 
-        // Use select to check for data on either fd1 or fd2
+        // USE OF SELECT FUNCTION
+        // This function will check for data on the file descriptors.
 
-        // Select needs as first argument the file descriptor whith the highest value, and +1
-        // 
-        
+        // Select needs as first argument the file descriptor whith the highest value, and +1.
+        // We use fd2 because it was opened at the end, so its value should be the highest.
         if (select(fd2 + 1, &rfds, NULL, NULL, NULL) == -1) {
             perror("Error in select");
             exit(EXIT_FAILURE);
@@ -46,7 +50,8 @@ int main(int argc, char *argv[]) {
         char buffer[MAX_BUF];
         int bytesRead;
 
-        // Check fd1
+        // CHECK FD1
+        // If fd1 is set in rfds, it means that select has detected readability on fd1.
         if (FD_ISSET(fd1, &rfds)) {
             bytesRead = read(fd1, buffer, MAX_BUF);
             if (bytesRead > 0) {
